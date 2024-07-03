@@ -1,0 +1,37 @@
+name: Build SPA
+on:
+  push:
+    branches: [ "main2" ]
+    
+  workflow_dispatch:
+
+jobs:
+  build_spa:
+    runs-on: runner-test
+    steps:
+      - name: Get Last Source Code
+        run: git clone --single-branch --branch main https://github.com/v-at-gkaz/js-sandbox-2024.git
+
+      - name: Build SPA
+        run: |
+          cd js-sandbox-2024/project_18_spa
+          npm ci
+          npm run build
+
+      - name: Save SPA bundle as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: spa-bundle
+          path: js-sandbox-2024/project_18_spa/dist/spa/
+          
+  move_spa_to_nginx:
+     needs: build_spa
+     runs-on: runner-test
+     steps:
+      - name: Download artifact as spa bundle
+        uses: actions/download-artifact@v3
+        with:
+          name: spa-bundle
+          path: spa/
+      - name: Copy SPA to NGINX www dir
+        run: cp -r spa /tmp/
