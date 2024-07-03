@@ -22,7 +22,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: spa-bundle
-          path: js-sandbox-2024/project_18_spa/dist/spa/
+          path: js-sandbox-2024/project_18_spa/dist/spa/browser/
           
   move_spa_to_nginx:
      needs: build_spa
