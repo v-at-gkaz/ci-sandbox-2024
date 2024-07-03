@@ -1,7 +1,7 @@
 name: Build SPA
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main2" ]
     
   workflow_dispatch:
 
