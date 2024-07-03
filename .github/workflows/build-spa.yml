@@ -7,7 +7,7 @@ on:
 
 jobs:
   build_spa:
-    runs-on: runner-test
+    runs-on: ubuntu-desktop-runner
     steps:
       - name: Get Last Source Code
         run: |
