@@ -10,7 +10,9 @@ jobs:
     runs-on: runner-test
     steps:
       - name: Get Last Source Code
-        run: git clone --single-branch --branch main https://github.com/v-at-gkaz/js-sandbox-2024.git
+        run: |
+          [ -d js-sandbox-2024 ] || git clone --single-branch --branch main https://github.com/v-at-gkaz/js-sandbox-2024.git
+          [ -d js-sandbox-2024 ] && cd js-sandbox-2024 && git pull
 
       - name: Build SPA
         run: |
