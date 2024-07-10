@@ -30,12 +30,10 @@ jobs:
           [ -d ~/compose ] || cp -r $GITHUB_WORKSPACE/compose ~/
 
       - name: Build Frontend
-        run: |
-          touch /tmp/frontend_was_built.txt
+        run: bash $GITHUB_WORKSPACE/build_scripts/build_frontend.sh
 
       - name: Build Backend
-        run: |
-          touch /tmp/backend_was_built.txt
+        run: bash $GITHUB_WORKSPACE/build_scripts/build_backend.sh
 
       - name: Run Compose
         run: |
