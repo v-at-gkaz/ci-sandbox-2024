@@ -24,12 +24,19 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
       - name: Copy
-        run: cp -r $GITHUB_WORKSPACE/compose ~/
+        run: |
+          [ -d ~/compose ] && cd ~/compose && docker compose down && cd $GITHUB_WORKSPACE && rm -r ~/compose && cp -r $GITHUB_WORKSPACE/compose ~/
+          [ -d ~/compose ] || cp -r $GITHUB_WORKSPACE/compose ~/
 
-      # Runs a set of commands using the runners shell
-      #- name: Run a multi-line script
-      #  run: |
-      #    echo Add other actions to build,
-      #    echo test, and deploy your project.
+      - name: Build Frontend
+        run: |
+          touch /tmp/frontend_was_built.txt
+
+      - name: Build Backend
+        run: |
+          touch /tmp/backend_was_built.txt
+
+      - name: Run Compose
+        run: |
+          cd ~/compose && docker compose up -d --build
