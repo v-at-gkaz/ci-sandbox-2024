@@ -1,0 +1,2 @@
+CREATE SCHEMA typeorm;
+GRANT ALL PRIVILEGES ON SCHEMA typeorm TO pguser;
