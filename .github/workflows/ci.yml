@@ -32,8 +32,8 @@ jobs:
       - name: Build Frontend
         run: bash $GITHUB_WORKSPACE/build_scripts/build_frontend.sh
 
-      - name: Build Backend
-        run: bash $GITHUB_WORKSPACE/build_scripts/build_backend.sh
+#      - name: Build Backend
+#        run: bash $GITHUB_WORKSPACE/build_scripts/build_backend.sh
 
       - name: Run Compose
         run: |
