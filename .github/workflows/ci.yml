@@ -26,8 +26,8 @@ jobs:
 
       - name: Copy
         run: |
-          [ -d ~/compose ] && cd ~/compose && docker compose down && cd $GITHUB_WORKSPACE && rm -r ~/compose && cp -r $GITHUB_WORKSPACE/compose ~/
-          [ -d ~/compose ] || cp -r $GITHUB_WORKSPACE/compose ~/
+          [ -d ~/dev_compose ] && cd ~/dev_compose && docker compose down && cd $GITHUB_WORKSPACE && rm -r ~/dev_compose && cp -r $GITHUB_WORKSPACE/compose ~/dev_compose
+          [ -d ~/dev_compose ] || cp -r $GITHUB_WORKSPACE/compose ~/dev_compose
 
       - name: Build Frontend
         run: bash $GITHUB_WORKSPACE/build_scripts/build_frontend.sh
@@ -37,4 +37,4 @@ jobs:
 
       - name: Run Compose
         run: |
-          cd ~/compose && docker compose up -d --build
+          cd ~/dev_compose && docker compose up -d --build
