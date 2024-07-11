@@ -5,9 +5,9 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "dev" ]
+    branches: [ "prod" ]
   pull_request:
-    branches: [ "dev" ]
+    branches: [ "prod" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -26,8 +26,8 @@ jobs:
 
       - name: Copy
         run: |
-          [ -d ~/dev_compose ] && cd ~/dev_compose && docker compose down && cd $GITHUB_WORKSPACE && rm -r ~/dev_compose && cp -r $GITHUB_WORKSPACE/compose ~/dev_compose
-          [ -d ~/dev_compose ] || cp -r $GITHUB_WORKSPACE/compose ~/dev_compose
+          [ -d ~/prod_compose ] && cd ~/prod_compose && docker compose down && cd $GITHUB_WORKSPACE && rm -r ~/prod_compose && cp -r $GITHUB_WORKSPACE/compose ~/prod_compose
+          [ -d ~/prod_compose ] || cp -r $GITHUB_WORKSPACE/compose ~/prod_compose
 
       - name: Build Frontend
         run: bash $GITHUB_WORKSPACE/build_scripts/build_frontend.sh
@@ -37,4 +37,4 @@ jobs:
 
       - name: Run Compose
         run: |
-          cd ~/dev_compose && docker compose up -d --build
+          cd ~/prod_compose && docker compose up -d --build

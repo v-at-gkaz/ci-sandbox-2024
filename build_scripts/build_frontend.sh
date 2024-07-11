@@ -1,5 +1,5 @@
 #!/bin/bash
-destination='dev_compose'
+destination='prod_compose'
 [ -d $GITHUB_WORKSPACE/tmp_frontend_builder ] || mkdir $GITHUB_WORKSPACE/tmp_frontend_builder
 cd $GITHUB_WORKSPACE/tmp_frontend_builder
 git clone --single-branch --branch main https://github.com/v-at-gkaz/js-sandbox-2024.git

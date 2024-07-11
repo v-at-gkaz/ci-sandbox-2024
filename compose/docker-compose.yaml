@@ -1,15 +1,15 @@
 services:
   frontend:
-    container_name: dev_frontend
-    hostname: dev-frontend
+    container_name: prod_frontend
+    hostname: prod-frontend
     build: frontend
     restart: always
     ports:
-      - 9090:80
+      - 8080:80
     #command: bash -c "tail -f /dev/null" # for debug only
   backend:
-    container_name: dev_backend
-    hostname: dev-backend
+    container_name: prod_backend
+    hostname: prod-backend
     build: backend
     restart: always
     environment:
@@ -19,13 +19,13 @@ services:
       - SUBD_DB=db
       - SUBD_USER=pguser
       - SUBD_PASS=pgPass
-      - PASSWORD_HASH_SALT_OR_ROUNDS=15
-      - JWT_SECRET=dfgergergergergreg
+      - PASSWORD_HASH_SALT_OR_ROUNDS=20
+      - JWT_SECRET=dfsgkljflasjfqr
       - JWT_EXPIRES_IN=9h
     #command: bash -c "tail -f /dev/null" # for debug only
   postgres:
-    container_name: dev_postgres
-    hostname: dev-postgres
+    container_name: prod_postgres
+    hostname: prod-postgres
     build: postgres
     restart: always
     environment:
@@ -35,6 +35,6 @@ services:
     ports:
       - 5433:5432
     volumes:
-      - dev_pg_data:/var/lib/postgresql/data
+      - prod_pg_data:/var/lib/postgresql/data
 volumes:
-  dev_pg_data:
+  prod_pg_data:
