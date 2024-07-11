@@ -1,5 +1,5 @@
 services:
-  frontend:
+  prod_frontend:
     container_name: prod_frontend
     hostname: prod-frontend
     build: frontend
@@ -7,14 +7,14 @@ services:
     ports:
       - 8080:80
     #command: bash -c "tail -f /dev/null" # for debug only
-  backend:
+  prod_backend:
     container_name: prod_backend
     hostname: prod-backend
     build: backend
     restart: always
     environment:
       - SERVER_PORT=8080
-      - SUBD_HOST=postgres
+      - SUBD_HOST=prod_postgres
       - SUBD_PORT=5432
       - SUBD_DB=db
       - SUBD_USER=pguser
@@ -23,7 +23,7 @@ services:
       - JWT_SECRET=dfsgkljflasjfqr
       - JWT_EXPIRES_IN=9h
     #command: bash -c "tail -f /dev/null" # for debug only
-  postgres:
+  prod_postgres:
     container_name: prod_postgres
     hostname: prod-postgres
     build: postgres
