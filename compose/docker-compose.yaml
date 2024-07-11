@@ -1,5 +1,5 @@
 services:
-  frontend:
+  dev_frontend:
     container_name: dev_frontend
     hostname: dev-frontend
     build: frontend
@@ -7,14 +7,14 @@ services:
     ports:
       - 9090:80
     #command: bash -c "tail -f /dev/null" # for debug only
-  backend:
+  dev_backend:
     container_name: dev_backend
     hostname: dev-backend
     build: backend
     restart: always
     environment:
       - SERVER_PORT=8080
-      - SUBD_HOST=postgres
+      - SUBD_HOST=dev_postgres
       - SUBD_PORT=5432
       - SUBD_DB=db
       - SUBD_USER=pguser
@@ -23,7 +23,7 @@ services:
       - JWT_SECRET=dfgergergergergreg
       - JWT_EXPIRES_IN=9h
     #command: bash -c "tail -f /dev/null" # for debug only
-  postgres:
+  dev_postgres:
     container_name: dev_postgres
     hostname: dev-postgres
     build: postgres
