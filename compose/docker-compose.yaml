@@ -19,7 +19,7 @@ services:
       - SUBD_DB=db
       - SUBD_USER=pguser
       - SUBD_PASS=pgPass
-      - PASSWORD_HASH_SALT_OR_ROUNDS=20
+      - PASSWORD_HASH_SALT_OR_ROUNDS=15
       - JWT_SECRET=dfsgkljflasjfqr
       - JWT_EXPIRES_IN=9h
     #command: bash -c "tail -f /dev/null" # for debug only
