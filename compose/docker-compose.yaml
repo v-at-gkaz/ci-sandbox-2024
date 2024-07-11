@@ -32,8 +32,8 @@ services:
       - POSTGRES_USER=pguser
       - POSTGRES_PASSWORD=pgPass
       - POSTGRES_DB=db
-    ports:
-      - 5433:5432
+    #ports:
+    #  - 5434:5432
     volumes:
       - prod_pg_data:/var/lib/postgresql/data
 volumes:
